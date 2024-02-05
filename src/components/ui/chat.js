@@ -13,7 +13,7 @@ export function CardsChat() {
     const [messages, setMessages] = React.useState([
 		{
 			"role": "assistant",
-			"content": "Fijn dat u zich heeft aangemeld bij Firm24. Wat is uw naam?",
+			"content": "Hi! Welkom bij Firm24, ik ben hier om je met je aandelen overdracht te helpen. Allereerst, laten we beginnen met je naam. Hoe heet je?",
 			"question_index": 1,
 			"quick_reply_options": []
 		}
