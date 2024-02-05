@@ -51,7 +51,7 @@ export function CardsChat() {
 		
 		console.log(`Before API call: question_index: ${newQuestionIndex}, answer: ${answer}`);
 		// Then, get the API response
-		const apiResponse = await axios.post('https://king-prawn-app-443ix.ondigitalocean.app/question/', {
+		const apiResponse = await axios.post('https://king-prawn-app-443ix.ondigitalocean.app/api/question/', {
 			"question_index": newQuestionIndex,
 			"previous_question": latestAssistantMessage.content,
 			"previous_answer": answer
