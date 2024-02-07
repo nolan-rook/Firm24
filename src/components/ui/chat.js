@@ -2,6 +2,7 @@ import * as React from "react"
 import { Send } from "lucide-react";
 import axios from "axios";
 import { Badge } from "@/components/ui/badge"
+import { v4 as uuidv4 } from 'uuid';
 
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage, } from "@/components/ui/avatar"
@@ -23,6 +24,7 @@ export function CardsChat() {
 	const [showTypingIndicator, setShowTypingIndicator] = React.useState(false);
 	const [quickReplyOptions, setQuickReplyOptions] = React.useState(messages.at(0)?.quick_reply_options || []);
     const inputLength = input.trim().length;
+	const [userId] = React.useState(uuidv4());
 
 	async function handleSubmit(event, option = null) {
 		console.log('handleSubmit', option)
@@ -51,11 +53,12 @@ export function CardsChat() {
 		
 		console.log(`Before API call: question_index: ${newQuestionIndex}, answer: ${answer}`);
 		// Then, get the API response
-		const apiResponse = await axios.post('https://king-prawn-app-443ix.ondigitalocean.app/question/', {
-			"question_index": newQuestionIndex,
-			"previous_question": latestAssistantMessage.content,
-			"previous_answer": answer
-		});
+        const apiResponse = await axios.post('https://king-prawn-app-443ix.ondigitalocean.app/question/', {
+            "user_id": userId,  // Voeg de user_id toe aan de payload
+            "question_index": newQuestionIndex,
+            "previous_question": latestAssistantMessage.content,
+            "previous_answer": answer
+        });
 
 		console.log(`API Response:`, apiResponse.data);
 
